@@ -1,5 +1,5 @@
 final Map<String, String> enUs = {
-  // splash Three Screen
+  // Login Screen Screen
   "lbl": "مرحبا بعودتك!",
   "lbl2": "رقم الهاتف",
   "lbl3": "كلمة المرور",

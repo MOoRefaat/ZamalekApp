@@ -41,15 +41,15 @@ class AppNavigationScreen extends StatelessWidget {
                           children: [
                             _buildScreenTitle(
                               context,
-                              screenTitle: "splash Two".tr,
+                              screenTitle: "splash Screen".tr,
                               onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.splashTwoScreen),
+                                  onTapScreenTitle(AppRoutes.splashScreen),
                             ),
                             _buildScreenTitle(
                               context,
-                              screenTitle: "splash Three".tr,
+                              screenTitle: "Login Screen".tr,
                               onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.splashThreeScreen),
+                                  onTapScreenTitle(AppRoutes.loginScreen),
                             ),
                             _buildScreenTitle(
                               context,

@@ -1,21 +1,21 @@
 // ignore_for_file: must_be_immutable
 
-part of 'splash_three_bloc.dart';
+part of 'login_bloc.dart';
 
-/// Represents the state of SplashThree in the application.
-class SplashThreeState extends Equatable {
-  SplashThreeState({
+/// Represents the state of Login in the application.
+class LoginState extends Equatable {
+  LoginState({
     this.phoneNumberController,
     this.eyeslashiconController,
     this.selectedCountry,
-    this.splashThreeModelObj,
+    this.loginModelObj,
   });
 
   TextEditingController? phoneNumberController;
 
   TextEditingController? eyeslashiconController;
 
-  SplashThreeModel? splashThreeModelObj;
+  LoginModel? loginModelObj;
 
   Country? selectedCountry;
 
@@ -24,21 +24,21 @@ class SplashThreeState extends Equatable {
         phoneNumberController,
         eyeslashiconController,
         selectedCountry,
-        splashThreeModelObj,
+        loginModelObj,
       ];
-  SplashThreeState copyWith({
+  LoginState copyWith({
     TextEditingController? phoneNumberController,
     TextEditingController? eyeslashiconController,
     Country? selectedCountry,
-    SplashThreeModel? splashThreeModelObj,
+    LoginModel? loginModelObj,
   }) {
-    return SplashThreeState(
+    return LoginState(
       phoneNumberController:
           phoneNumberController ?? this.phoneNumberController,
       eyeslashiconController:
           eyeslashiconController ?? this.eyeslashiconController,
       selectedCountry: selectedCountry ?? this.selectedCountry,
-      splashThreeModelObj: splashThreeModelObj ?? this.splashThreeModelObj,
+      loginModelObj: loginModelObj ?? this.loginModelObj,
     );
   }
 }

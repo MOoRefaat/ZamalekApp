@@ -1,5 +1,5 @@
-import 'bloc/splash_three_bloc.dart';
-import 'models/splash_three_model.dart';
+import 'bloc/login_bloc.dart';
+import 'models/login_model.dart';
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/material.dart';
@@ -9,15 +9,14 @@ import 'package:mohamed_s_application1/widgets/custom_elevated_button.dart';
 import 'package:mohamed_s_application1/widgets/custom_phone_number.dart';
 import 'package:mohamed_s_application1/widgets/custom_text_form_field.dart';
 
-class SplashThreeScreen extends StatelessWidget {
-  const SplashThreeScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   static Widget builder(BuildContext context) {
-    return BlocProvider<SplashThreeBloc>(
-        create: (context) => SplashThreeBloc(
-            SplashThreeState(splashThreeModelObj: SplashThreeModel()))
-          ..add(SplashThreeInitialEvent()),
-        child: SplashThreeScreen());
+    return BlocProvider<LoginBloc>(
+        create: (context) => LoginBloc(LoginState(loginModelObj: LoginModel()))
+          ..add(LoginInitialEvent()),
+        child: LoginScreen());
   }
 
   @override
@@ -125,15 +124,14 @@ class SplashThreeScreen extends StatelessWidget {
                       fontFamily: 'DIN Next LT Arabic',
                       fontWeight: FontWeight.w400))),
           SizedBox(height: 12.v),
-          BlocBuilder<SplashThreeBloc, SplashThreeState>(
-              builder: (context, state) {
+          BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
             return CustomPhoneNumber(
                 country: state.selectedCountry ??
                     CountryPickerUtils.getCountryByPhoneCode('1'),
                 controller: state.phoneNumberController,
                 onTap: (Country value) {
                   context
-                      .read<SplashThreeBloc>()
+                      .read<LoginBloc>()
                       .add(ChangeCountryEvent(value: value));
                 });
           })
@@ -154,8 +152,7 @@ class SplashThreeScreen extends StatelessWidget {
                       fontFamily: 'DIN Next LT Arabic',
                       fontWeight: FontWeight.w400))),
           SizedBox(height: 12.v),
-          BlocSelector<SplashThreeBloc, SplashThreeState,
-                  TextEditingController?>(
+          BlocSelector<LoginBloc, LoginState, TextEditingController?>(
               selector: (state) => state.eyeslashiconController,
               builder: (context, eyeslashiconController) {
                 return CustomTextFormField(

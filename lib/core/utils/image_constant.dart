@@ -2,10 +2,10 @@ class ImageConstant {
   // Image folder path
   static String imagePath = 'assets/images';
 
-  // splash Two images
+  // splash Screen images
   static String imgLogo = '$imagePath/img_logo.svg';
 
-  // splash Three images
+  // Login Screen images
   static String imgGroup141 = '$imagePath/img_group_141.svg';
 
   static String img = '$imagePath/img_.svg';
