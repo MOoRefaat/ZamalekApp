@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mohamed_s_application1/presentation/splash_two_screen/splash_two_screen.dart';
-import 'package:mohamed_s_application1/presentation/splash_three_screen/splash_three_screen.dart';
+import 'package:mohamed_s_application1/presentation/splash_screen/splash_screen.dart';
+import 'package:mohamed_s_application1/presentation/login_screen/login_screen.dart';
 import 'package:mohamed_s_application1/presentation/news_one_container_screen/news_one_container_screen.dart';
 import 'package:mohamed_s_application1/presentation/store_screen/store_screen.dart';
 import 'package:mohamed_s_application1/presentation/news_screen/news_screen.dart';
@@ -10,9 +10,9 @@ import 'package:mohamed_s_application1/presentation/score_screen/score_screen.da
 import 'package:mohamed_s_application1/presentation/app_navigation_screen/app_navigation_screen.dart';
 
 class AppRoutes {
-  static const String splashTwoScreen = '/splash_two_screen';
+  static const String splashScreen = '/splash_screen';
 
-  static const String splashThreeScreen = '/splash_three_screen';
+  static const String loginScreen = '/login_screen';
 
   static const String homePage = '/home_page';
 
@@ -39,8 +39,8 @@ class AppRoutes {
   static const String initialRoute = '/initialRoute';
 
   static Map<String, WidgetBuilder> get routes => {
-        splashTwoScreen: SplashTwoScreen.builder,
-        splashThreeScreen: SplashThreeScreen.builder,
+        splashScreen: SplashScreen.builder,
+        loginScreen: LoginScreen.builder,
         newsOneContainerScreen: NewsOneContainerScreen.builder,
         storeScreen: StoreScreen.builder,
         newsScreen: NewsScreen.builder,
@@ -48,6 +48,6 @@ class AppRoutes {
         profileScreen: ProfileScreen.builder,
         scoreScreen: ScoreScreen.builder,
         appNavigationScreen: AppNavigationScreen.builder,
-        initialRoute: SplashThreeScreen.builder
+        initialRoute: LoginScreen.builder
       };
 }

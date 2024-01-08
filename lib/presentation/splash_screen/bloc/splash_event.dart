@@ -1,16 +1,16 @@
 // ignore_for_file: must_be_immutable
 
-part of 'splash_two_bloc.dart';
+part of 'splash_bloc.dart';
 
 /// Abstract class for all events that can be dispatched from the
-///SplashTwo widget.
+///Splash widget.
 ///
 /// Events must be immutable and implement the [Equatable] interface.
 @immutable
-abstract class SplashTwoEvent extends Equatable {}
+abstract class SplashEvent extends Equatable {}
 
-/// Event that is dispatched when the SplashTwo widget is first created.
-class SplashTwoInitialEvent extends SplashTwoEvent {
+/// Event that is dispatched when the Splash widget is first created.
+class SplashInitialEvent extends SplashEvent {
   @override
   List<Object?> get props => [];
 }

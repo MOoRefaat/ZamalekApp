@@ -1,27 +1,27 @@
-import 'bloc/splash_two_bloc.dart';
-import 'models/splash_two_model.dart';
+import 'bloc/splash_bloc.dart';
+import 'models/splash_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 
-class SplashTwoScreen extends StatelessWidget {
-  const SplashTwoScreen({Key? key})
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key})
       : super(
           key: key,
         );
 
   static Widget builder(BuildContext context) {
-    return BlocProvider<SplashTwoBloc>(
-      create: (context) => SplashTwoBloc(SplashTwoState(
-        splashTwoModelObj: SplashTwoModel(),
+    return BlocProvider<SplashBloc>(
+      create: (context) => SplashBloc(SplashState(
+        splashModelObj: SplashModel(),
       ))
-        ..add(SplashTwoInitialEvent()),
-      child: SplashTwoScreen(),
+        ..add(SplashInitialEvent()),
+      child: SplashScreen(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SplashTwoBloc, SplashTwoState>(
+    return BlocBuilder<SplashBloc, SplashState>(
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
