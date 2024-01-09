@@ -1,18 +1,14 @@
-import '../models/itemgrid_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 
 // ignore: must_be_immutable
 class ItemgridItemWidget extends StatelessWidget {
-  ItemgridItemWidget(
-    this.itemgridItemModelObj, {
+  ItemgridItemWidget({
     Key? key,
     this.onTapItem3,
   }) : super(
           key: key,
         );
-
-  ItemgridItemModel itemgridItemModelObj;
 
   VoidCallback? onTapItem3;
 
@@ -42,7 +38,7 @@ class ItemgridItemWidget extends StatelessWidget {
                 borderRadius: BorderRadiusStyle.roundedBorder12,
               ),
               child: CustomImageView(
-                imagePath: itemgridItemModelObj?.image,
+                imagePath: ImageConstant.imgDownload16R,
                 height: 124.v,
                 width: 92.h,
                 alignment: Alignment.center,
@@ -52,7 +48,7 @@ class ItemgridItemWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 4.h),
               child: Text(
-                itemgridItemModelObj.text!,
+                "قميص مباراة الزمالك الأحتياطي",
                 style: TextStyle(
                   color: theme.colorScheme.primaryContainer,
                   fontSize: 12.fSize,
@@ -70,7 +66,7 @@ class ItemgridItemWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 4.v),
                     child: Text(
-                      itemgridItemModelObj.currency!,
+                      "ج.م".toUpperCase(),
                       style: TextStyle(
                         color: theme.colorScheme.primary,
                         fontSize: 10.fSize,
@@ -82,7 +78,7 @@ class ItemgridItemWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 3.h),
                     child: Text(
-                      itemgridItemModelObj.amount!,
+                      "150",
                       style: TextStyle(
                         color: theme.colorScheme.primaryContainer,
                         fontSize: 16.fSize,

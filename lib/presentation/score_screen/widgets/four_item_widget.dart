@@ -1,20 +1,12 @@
-import '../models/four_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 
 // ignore: must_be_immutable
 class FourItemWidget extends StatelessWidget {
-  FourItemWidget(
-    this.fourItemModelObj, {
-    Key? key,
-    this.onSelectedChipView,
-  }) : super(
+  const FourItemWidget({Key? key})
+      : super(
           key: key,
         );
-
-  FourItemModel fourItemModelObj;
-
-  Function(bool)? onSelectedChipView;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +18,7 @@ class FourItemWidget extends StatelessWidget {
       showCheckmark: false,
       labelPadding: EdgeInsets.zero,
       label: Text(
-        fourItemModelObj.four!,
+        "2 : 1",
         style: TextStyle(
           color: theme.colorScheme.primaryContainer,
           fontSize: 16.fSize,
@@ -34,31 +26,19 @@ class FourItemWidget extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      selected: (fourItemModelObj.isSelected ?? false),
+      selected: false,
       backgroundColor: theme.colorScheme.onPrimary,
       selectedColor: theme.colorScheme.onPrimary,
-      shape: (fourItemModelObj.isSelected ?? false)
-          ? RoundedRectangleBorder(
-              side: BorderSide(
-                color: theme.colorScheme.onPrimary.withOpacity(0.6),
-                width: 1.h,
-              ),
-              borderRadius: BorderRadius.circular(
-                26.h,
-              ),
-            )
-          : RoundedRectangleBorder(
-              side: BorderSide(
-                color: appTheme.blueGray300.withOpacity(0.15),
-                width: 1.h,
-              ),
-              borderRadius: BorderRadius.circular(
-                26.h,
-              ),
-            ),
-      onSelected: (value) {
-        onSelectedChipView?.call(value);
-      },
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: appTheme.blueGray300.withOpacity(0.15),
+          width: 1.h,
+        ),
+        borderRadius: BorderRadius.circular(
+          26.h,
+        ),
+      ),
+      onSelected: (value) {},
     );
   }
 }

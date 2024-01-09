@@ -1,5 +1,3 @@
-import 'bloc/app_navigation_bloc.dart';
-import 'models/app_navigation_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 
@@ -9,95 +7,81 @@ class AppNavigationScreen extends StatelessWidget {
           key: key,
         );
 
-  static Widget builder(BuildContext context) {
-    return BlocProvider<AppNavigationBloc>(
-      create: (context) => AppNavigationBloc(AppNavigationState(
-        appNavigationModelObj: AppNavigationModel(),
-      ))
-        ..add(AppNavigationInitialEvent()),
-      child: AppNavigationScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppNavigationBloc, AppNavigationState>(
-      builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            backgroundColor: Color(0XFFFFFFFF),
-            body: SizedBox(
-              width: 375.h,
-              child: Column(
-                children: [
-                  _buildAppNavigation(context),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0XFFFFFFFF),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0XFFFFFFFF),
+        body: SizedBox(
+          width: 375.h,
+          child: Column(
+            children: [
+              _buildAppNavigation(context),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0XFFFFFFFF),
+                    ),
+                    child: Column(
+                      children: [
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "splash Screen",
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(context, AppRoutes.splashScreen),
                         ),
-                        child: Column(
-                          children: [
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "splash Screen".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.splashScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Login Screen".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.loginScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "news One - Container".tr,
-                              onTapScreenTitle: () => onTapScreenTitle(
-                                  AppRoutes.newsOneContainerScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "store".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.storeScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "news".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.newsScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "item details".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.itemDetailsScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "profile".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.profileScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "score".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.scoreScreen),
-                            ),
-                          ],
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "Login Screen",
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(context, AppRoutes.loginScreen),
                         ),
-                      ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "news One - Container",
+                          onTapScreenTitle: () => onTapScreenTitle(
+                              context, AppRoutes.newsOneContainerScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "store",
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(context, AppRoutes.storeScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "news",
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(context, AppRoutes.newsScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "item details",
+                          onTapScreenTitle: () => onTapScreenTitle(
+                              context, AppRoutes.itemDetailsScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "profile",
+                          onTapScreenTitle: () => onTapScreenTitle(
+                              context, AppRoutes.profileScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "score",
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(context, AppRoutes.scoreScreen),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
@@ -115,7 +99,7 @@ class AppNavigationScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.h),
               child: Text(
-                "App Navigation".tr,
+                "App Navigation",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0XFF000000),
@@ -132,8 +116,7 @@ class AppNavigationScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(left: 20.h),
               child: Text(
-                "Check your app's UI from the below demo screens of your app."
-                    .tr,
+                "Check your app's UI from the below demo screens of your app.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0XFF888888),
@@ -202,7 +185,10 @@ class AppNavigationScreen extends StatelessWidget {
   }
 
   /// Common click event
-  void onTapScreenTitle(String routeName) {
-    NavigatorService.pushNamed(routeName);
+  void onTapScreenTitle(
+    BuildContext context,
+    String routeName,
+  ) {
+    Navigator.pushNamed(context, routeName);
   }
 }

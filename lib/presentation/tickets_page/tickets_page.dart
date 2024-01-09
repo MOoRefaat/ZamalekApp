@@ -1,7 +1,4 @@
 import '../tickets_page/widgets/viewhierarchylist_item_widget.dart';
-import 'bloc/tickets_bloc.dart';
-import 'models/tickets_model.dart';
-import 'models/viewhierarchylist_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 import 'package:mohamed_s_application1/widgets/app_bar/appbar_title.dart';
@@ -16,16 +13,6 @@ class TicketsPage extends StatelessWidget {
       : super(
           key: key,
         );
-
-  static Widget builder(BuildContext context) {
-    return BlocProvider<TicketsBloc>(
-      create: (context) => TicketsBloc(TicketsState(
-        ticketsModelObj: TicketsModel(),
-      ))
-        ..add(TicketsInitialEvent()),
-      child: TicketsPage(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +50,7 @@ class TicketsPage extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 8.v),
             ),
             AppbarTitle(
-              text: "lbl24".tr,
+              text: "تذاكر المباريات",
               margin: EdgeInsets.fromLTRB(128.h, 27.v, 127.h, 8.v),
             ),
             AppbarTitleCircleimage(
@@ -106,7 +93,7 @@ class TicketsPage extends StatelessWidget {
           ),
         ),
         Text(
-          "lbl22".tr,
+          "مباريات قادمة",
           style: TextStyle(
             color: theme.colorScheme.primaryContainer,
             fontSize: 18.fSize,
@@ -121,30 +108,20 @@ class TicketsPage extends StatelessWidget {
   /// Section Widget
   Widget _buildViewHierarchyList(BuildContext context) {
     return Expanded(
-      child: BlocSelector<TicketsBloc, TicketsState, TicketsModel?>(
-        selector: (state) => state.ticketsModelObj,
-        builder: (context, ticketsModelObj) {
-          return ListView.separated(
-            physics: BouncingScrollPhysics(),
-            shrinkWrap: true,
-            separatorBuilder: (
-              context,
-              index,
-            ) {
-              return SizedBox(
-                height: 16.v,
-              );
-            },
-            itemCount: ticketsModelObj?.viewhierarchylistItemList.length ?? 0,
-            itemBuilder: (context, index) {
-              ViewhierarchylistItemModel model =
-                  ticketsModelObj?.viewhierarchylistItemList[index] ??
-                      ViewhierarchylistItemModel();
-              return ViewhierarchylistItemWidget(
-                model,
-              );
-            },
+      child: ListView.separated(
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        separatorBuilder: (
+          context,
+          index,
+        ) {
+          return SizedBox(
+            height: 16.v,
           );
+        },
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          return ViewhierarchylistItemWidget();
         },
       ),
     );

@@ -1,4 +1,3 @@
-import '../models/viewhierarchy1_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:mohamed_s_application1/core/app_export.dart';
@@ -6,15 +5,12 @@ import 'package:mohamed_s_application1/widgets/custom_elevated_button.dart';
 
 // ignore: must_be_immutable
 class Viewhierarchy1ItemWidget extends StatelessWidget {
-  Viewhierarchy1ItemWidget(
-    this.viewhierarchy1ItemModelObj, {
+  Viewhierarchy1ItemWidget({
     Key? key,
     this.onTapViewHierarchy,
   }) : super(
           key: key,
         );
-
-  Viewhierarchy1ItemModel viewhierarchy1ItemModelObj;
 
   VoidCallback? onTapViewHierarchy;
 
@@ -65,7 +61,7 @@ class Viewhierarchy1ItemWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(left: 5.h),
                             child: Text(
-                              viewhierarchy1ItemModelObj.titleText1!,
+                              "الزمالك",
                               style: TextStyle(
                                 color: theme.colorScheme.primaryContainer,
                                 fontSize: 12.fSize,
@@ -85,7 +81,7 @@ class Viewhierarchy1ItemWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          viewhierarchy1ItemModelObj.titleText2!,
+                          "الدوري المصري الممتاز",
                           style: TextStyle(
                             color: theme.colorScheme.primaryContainer,
                             fontSize: 12.fSize,
@@ -95,7 +91,7 @@ class Viewhierarchy1ItemWidget extends StatelessWidget {
                         ),
                         SizedBox(height: 5.v),
                         Text(
-                          viewhierarchy1ItemModelObj.titleText3!,
+                          "الأسبوع 10",
                           style: TextStyle(
                             color: appTheme.blueGray300,
                             fontSize: 10.fSize,
@@ -107,11 +103,11 @@ class Viewhierarchy1ItemWidget extends StatelessWidget {
                         CustomElevatedButton(
                           height: 40.v,
                           width: 77.h,
-                          text: "lbl23".tr,
+                          text: "توقع الأن",
                         ),
                         SizedBox(height: 12.v),
                         Text(
-                          viewhierarchy1ItemModelObj.dateText!,
+                          "21 سبتمبر 2023",
                           style: TextStyle(
                             color: appTheme.blueGray300,
                             fontSize: 12.fSize,
@@ -121,7 +117,7 @@ class Viewhierarchy1ItemWidget extends StatelessWidget {
                         ),
                         SizedBox(height: 6.v),
                         Text(
-                          viewhierarchy1ItemModelObj.timeText!,
+                          "09:00 م",
                           style: TextStyle(
                             color: appTheme.blueGray300,
                             fontSize: 14.fSize,
@@ -144,13 +140,13 @@ class Viewhierarchy1ItemWidget extends StatelessWidget {
               child: Column(
                 children: [
                   CustomImageView(
-                    imagePath: viewhierarchy1ItemModelObj?.pyramidsImage,
+                    imagePath: ImageConstant.imgImage51,
                     height: 60.adaptSize,
                     width: 60.adaptSize,
                   ),
                   SizedBox(height: 4.v),
                   Text(
-                    viewhierarchy1ItemModelObj.titleText4!,
+                    "بيراميدز",
                     style: TextStyle(
                       color: theme.colorScheme.primaryContainer,
                       fontSize: 12.fSize,

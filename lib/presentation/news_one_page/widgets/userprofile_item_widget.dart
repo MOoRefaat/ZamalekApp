@@ -1,18 +1,14 @@
-import '../models/userprofile_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 
 // ignore: must_be_immutable
 class UserprofileItemWidget extends StatelessWidget {
-  UserprofileItemWidget(
-    this.userprofileItemModelObj, {
+  UserprofileItemWidget({
     Key? key,
     this.onTapUserProfile,
   }) : super(
           key: key,
         );
-
-  UserprofileItemModel userprofileItemModelObj;
 
   VoidCallback? onTapUserProfile;
 
@@ -38,7 +34,7 @@ class UserprofileItemWidget extends StatelessWidget {
             children: [
               SizedBox(height: 5.v),
               CustomImageView(
-                imagePath: userprofileItemModelObj?.image,
+                imagePath: ImageConstant.imgRectangle18511,
                 height: 132.v,
                 width: 278.h,
                 radius: BorderRadius.circular(
@@ -49,7 +45,7 @@ class UserprofileItemWidget extends StatelessWidget {
               SizedBox(
                 width: 278.h,
                 child: Text(
-                  userprofileItemModelObj.title!,
+                  "موعد مباراة الزمالك أمام بيراميدز في الدوري والقناة الناقلة",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.right,
@@ -65,7 +61,7 @@ class UserprofileItemWidget extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Text(
-                  userprofileItemModelObj.date!,
+                  "20 سبتمبر 2023",
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: appTheme.blueGray300,

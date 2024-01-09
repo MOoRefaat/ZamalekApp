@@ -1,18 +1,13 @@
-import '../models/viewhierarchy_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:mohamed_s_application1/core/app_export.dart';
 
 // ignore: must_be_immutable
 class ViewhierarchyItemWidget extends StatelessWidget {
-  ViewhierarchyItemWidget(
-    this.viewhierarchyItemModelObj, {
-    Key? key,
-  }) : super(
+  const ViewhierarchyItemWidget({Key? key})
+      : super(
           key: key,
         );
-
-  ViewhierarchyItemModel viewhierarchyItemModelObj;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +74,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(left: 5.h),
                                   child: Text(
-                                    viewhierarchyItemModelObj.titleText!,
+                                    "الزمالك",
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                       color: theme.colorScheme.primaryContainer,
@@ -111,7 +106,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  viewhierarchyItemModelObj.liveText!,
+                                  "مباشر",
                                   style: TextStyle(
                                     color: theme.colorScheme.primary,
                                     fontSize: 10.fSize,
@@ -144,7 +139,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  viewhierarchyItemModelObj.scoreText1!,
+                                  "2",
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
                                     color: theme.colorScheme.primaryContainer,
@@ -156,7 +151,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(left: 6.h),
                                   child: Text(
-                                    viewhierarchyItemModelObj.colonText!,
+                                    ":",
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                       color: theme.colorScheme.primaryContainer,
@@ -169,7 +164,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(left: 4.h),
                                   child: Text(
-                                    viewhierarchyItemModelObj.scoreText2!,
+                                    "1",
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                       color: theme.colorScheme.primaryContainer,
@@ -188,7 +183,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.only(top: 16.v),
                             child: Text(
-                              viewhierarchyItemModelObj.leagueTitleText!,
+                              "الدوري المصري الممتاز",
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 color: theme.colorScheme.primaryContainer,
@@ -204,7 +199,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.only(top: 40.v),
                             child: Text(
-                              viewhierarchyItemModelObj.weekText!,
+                              "الأسبوع 10",
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 color: appTheme.blueGray300,
@@ -220,7 +215,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                   ),
                 ),
                 CustomImageView(
-                  imagePath: viewhierarchyItemModelObj?.ismailiImage,
+                  imagePath: ImageConstant.imgImage5,
                   height: 60.adaptSize,
                   width: 60.adaptSize,
                   alignment: Alignment.centerRight,
@@ -234,7 +229,7 @@ class ViewhierarchyItemWidget extends StatelessWidget {
                       bottom: 20.v,
                     ),
                     child: Text(
-                      viewhierarchyItemModelObj.ismailiTitleText!,
+                      "الإسماعيلي",
                       textAlign: TextAlign.right,
                       style: TextStyle(
                         color: theme.colorScheme.primaryContainer,

@@ -1,5 +1,3 @@
-import 'bloc/profile_bloc.dart';
-import 'models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 import 'package:mohamed_s_application1/widgets/custom_icon_button.dart';
@@ -10,148 +8,134 @@ class ProfileScreen extends StatelessWidget {
           key: key,
         );
 
-  static Widget builder(BuildContext context) {
-    return BlocProvider<ProfileBloc>(
-      create: (context) => ProfileBloc(ProfileState(
-        profileModelObj: ProfileModel(),
-      ))
-        ..add(ProfileInitialEvent()),
-      child: ProfileScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
-      builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            body: SizedBox(
-              width: double.maxFinite,
-              child: Column(
-                children: [
-                  _buildHorizontalScroll(context),
-                  SizedBox(height: 7.v),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.h),
-                    child: _buildFiftyFive(
-                      context,
-                      widgetText: "lbl33".tr,
-                      settingImage: ImageConstant.imgIconsaxLinearEdit,
-                    ),
-                  ),
-                  SizedBox(height: 20.v),
-                  Opacity(
-                    opacity: 0.05,
-                    child: Divider(
-                      indent: 24.h,
-                      endIndent: 24.h,
-                    ),
-                  ),
-                  SizedBox(height: 23.v),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.h),
-                    child: _buildSixtySeven(
-                      context,
-                      widgetText: "lbl34".tr,
-                      starImage: ImageConstant.imgIconsaxLinearNotetext,
-                    ),
-                  ),
-                  SizedBox(height: 20.v),
-                  Opacity(
-                    opacity: 0.05,
-                    child: Divider(
-                      indent: 24.h,
-                      endIndent: 24.h,
-                    ),
-                  ),
-                  SizedBox(height: 25.v),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.h),
-                    child: _buildFiftyFive(
-                      context,
-                      widgetText: "lbl35".tr,
-                      settingImage: ImageConstant.imgIconsaxLinearSetting2,
-                    ),
-                  ),
-                  SizedBox(height: 21.v),
-                  Opacity(
-                    opacity: 0.05,
-                    child: Divider(
-                      indent: 24.h,
-                      endIndent: 24.h,
-                    ),
-                  ),
-                  SizedBox(height: 23.v),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.h),
-                    child: _buildSixtySeven(
-                      context,
-                      widgetText: "lbl36".tr,
-                      starImage: ImageConstant.imgIconsaxLinearStar1,
-                    ),
-                  ),
-                  SizedBox(height: 22.v),
-                  Opacity(
-                    opacity: 0.05,
-                    child: Divider(
-                      indent: 24.h,
-                      endIndent: 24.h,
-                    ),
-                  ),
-                  SizedBox(height: 23.v),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.h),
-                    child: _buildSixtySeven(
-                      context,
-                      widgetText: "lbl37".tr,
-                      starImage: ImageConstant.imgIconsaxLinearShare,
-                    ),
-                  ),
-                  SizedBox(height: 22.v),
-                  Opacity(
-                    opacity: 0.05,
-                    child: Divider(
-                      indent: 24.h,
-                      endIndent: 24.h,
-                    ),
-                  ),
-                  SizedBox(height: 23.v),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.h),
-                    child: _buildFiftyFive(
-                      context,
-                      widgetText: "lbl38".tr,
-                      settingImage: ImageConstant.imgIconsaxLinearWarning2,
-                    ),
-                  ),
-                  SizedBox(height: 22.v),
-                  Opacity(
-                    opacity: 0.05,
-                    child: Divider(
-                      indent: 24.h,
-                      endIndent: 24.h,
-                    ),
-                  ),
-                  SizedBox(height: 5.v),
-                ],
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox(
+          width: double.maxFinite,
+          child: Column(
+            children: [
+              _buildHorizontalScroll(context),
+              SizedBox(height: 7.v),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.h),
+                child: _buildFiftyFive(
+                  context,
+                  widgetText: "تعديل حسابي",
+                  settingImage: ImageConstant.imgIconsaxLinearEdit,
+                ),
               ),
-            ),
-            bottomNavigationBar: Padding(
-              padding: EdgeInsets.only(
-                left: 24.h,
-                right: 24.h,
-                bottom: 58.v,
+              SizedBox(height: 20.v),
+              Opacity(
+                opacity: 0.05,
+                child: Divider(
+                  indent: 24.h,
+                  endIndent: 24.h,
+                ),
               ),
-              child: _buildFiftyFive(
-                context,
-                widgetText: "lbl39".tr,
-                settingImage: ImageConstant.imgIconsaxLinearMessagetext1,
+              SizedBox(height: 23.v),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.h),
+                child: _buildSixtySeven(
+                  context,
+                  widgetText: "طلباتي",
+                  starImage: ImageConstant.imgIconsaxLinearNotetext,
+                ),
               ),
-            ),
+              SizedBox(height: 20.v),
+              Opacity(
+                opacity: 0.05,
+                child: Divider(
+                  indent: 24.h,
+                  endIndent: 24.h,
+                ),
+              ),
+              SizedBox(height: 25.v),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.h),
+                child: _buildFiftyFive(
+                  context,
+                  widgetText: "الإعدادات",
+                  settingImage: ImageConstant.imgIconsaxLinearSetting2,
+                ),
+              ),
+              SizedBox(height: 21.v),
+              Opacity(
+                opacity: 0.05,
+                child: Divider(
+                  indent: 24.h,
+                  endIndent: 24.h,
+                ),
+              ),
+              SizedBox(height: 23.v),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.h),
+                child: _buildSixtySeven(
+                  context,
+                  widgetText: "قيم التطبيق",
+                  starImage: ImageConstant.imgIconsaxLinearStar1,
+                ),
+              ),
+              SizedBox(height: 22.v),
+              Opacity(
+                opacity: 0.05,
+                child: Divider(
+                  indent: 24.h,
+                  endIndent: 24.h,
+                ),
+              ),
+              SizedBox(height: 23.v),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.h),
+                child: _buildSixtySeven(
+                  context,
+                  widgetText: "شارك التطبيق",
+                  starImage: ImageConstant.imgIconsaxLinearShare,
+                ),
+              ),
+              SizedBox(height: 22.v),
+              Opacity(
+                opacity: 0.05,
+                child: Divider(
+                  indent: 24.h,
+                  endIndent: 24.h,
+                ),
+              ),
+              SizedBox(height: 23.v),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.h),
+                child: _buildFiftyFive(
+                  context,
+                  widgetText: "عن التطبيق",
+                  settingImage: ImageConstant.imgIconsaxLinearWarning2,
+                ),
+              ),
+              SizedBox(height: 22.v),
+              Opacity(
+                opacity: 0.05,
+                child: Divider(
+                  indent: 24.h,
+                  endIndent: 24.h,
+                ),
+              ),
+              SizedBox(height: 5.v),
+            ],
           ),
-        );
-      },
+        ),
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(
+            left: 24.h,
+            right: 24.h,
+            bottom: 58.v,
+          ),
+          child: _buildFiftyFive(
+            context,
+            widgetText: "تواصل معانا",
+            settingImage: ImageConstant.imgIconsaxLinearMessagetext1,
+          ),
+        ),
+      ),
     );
   }
 
@@ -243,7 +227,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 8.v),
                           Text(
-                            "lbl32".tr,
+                            "محمد طارق",
                             style: TextStyle(
                               color: theme.colorScheme.primaryContainer,
                               fontSize: 24.fSize,
@@ -252,7 +236,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "lbl_20_1018930499".tr,
+                            "+20 1018930499",
                             style: TextStyle(
                               color: appTheme.blueGray300,
                               fontSize: 14.fSize,

@@ -17,25 +17,25 @@ class CustomBottomBarState extends State<CustomBottomBar> {
     BottomMenuModel(
       icon: ImageConstant.imgNav1,
       activeIcon: ImageConstant.imgNav1,
-      title: "lbl19".tr,
+      title: "الأخبار",
       type: BottomBarEnum.tf,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavBlueGray300,
       activeIcon: ImageConstant.imgNavBlueGray300,
-      title: "lbl20".tr,
+      title: "التذاكر",
       type: BottomBarEnum.tf,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavBlueGray30020x20,
       activeIcon: ImageConstant.imgNavBlueGray30020x20,
-      title: "lbl10".tr,
+      title: "المباريات",
       type: BottomBarEnum.tf,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNav20x20,
       activeIcon: ImageConstant.imgNav20x20,
-      title: "lbl21".tr,
+      title: "الرئيسية",
       type: BottomBarEnum.tf,
     )
   ];

@@ -1,17 +1,12 @@
-import '../models/newsarticlelist_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 
 // ignore: must_be_immutable
 class NewsarticlelistItemWidget extends StatelessWidget {
-  NewsarticlelistItemWidget(
-    this.newsarticlelistItemModelObj, {
-    Key? key,
-  }) : super(
+  const NewsarticlelistItemWidget({Key? key})
+      : super(
           key: key,
         );
-
-  NewsarticlelistItemModel newsarticlelistItemModelObj;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +29,7 @@ class NewsarticlelistItemWidget extends StatelessWidget {
                 SizedBox(
                   width: 201.h,
                   child: Text(
-                    newsarticlelistItemModelObj.title!,
+                    "نكشف سبب غياب 7 لاعبين عن قائمة الزمالك أمام بيراميدز",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.right,
@@ -50,7 +45,7 @@ class NewsarticlelistItemWidget extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    newsarticlelistItemModelObj.date!,
+                    "20 سبتمبر 2023",
                     style: TextStyle(
                       color: appTheme.blueGray300,
                       fontSize: 10.fSize,
@@ -63,7 +58,7 @@ class NewsarticlelistItemWidget extends StatelessWidget {
             ),
           ),
           CustomImageView(
-            imagePath: newsarticlelistItemModelObj?.image,
+            imagePath: ImageConstant.imgRectangle1851180x100,
             height: 80.v,
             width: 100.h,
             radius: BorderRadius.circular(
