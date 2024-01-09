@@ -1,7 +1,4 @@
 import '../store_screen/widgets/itemgrid_item_widget.dart';
-import 'bloc/store_bloc.dart';
-import 'models/itemgrid_item_model.dart';
-import 'models/store_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 import 'package:mohamed_s_application1/presentation/news_one_page/news_one_page.dart';
@@ -16,14 +13,9 @@ import 'package:mohamed_s_application1/widgets/custom_search_view.dart';
 class StoreScreen extends StatelessWidget {
   StoreScreen({Key? key}) : super(key: key);
 
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+  TextEditingController searchController = TextEditingController();
 
-  static Widget builder(BuildContext context) {
-    return BlocProvider<StoreBloc>(
-        create: (context) => StoreBloc(StoreState(storeModelObj: StoreModel()))
-          ..add(StoreInitialEvent()),
-        child: StoreScreen());
-  }
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +28,13 @@ class StoreScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 24.h),
                 child: Column(children: [
                   SizedBox(height: 25.v),
-                  BlocSelector<StoreBloc, StoreState, TextEditingController?>(
-                      selector: (state) => state.searchController,
-                      builder: (context, searchController) {
-                        return CustomSearchView(
-                            controller: searchController, hintText: "msg11".tr);
-                      }),
+                  CustomSearchView(
+                      controller: searchController,
+                      hintText: "ابحث عن منتجك هنا"),
                   SizedBox(height: 25.v),
                   Align(
                       alignment: Alignment.centerRight,
-                      child: Text("lbl16".tr,
+                      child: Text("المضاف حديثا",
                           style: TextStyle(
                               color: theme.colorScheme.primaryContainer,
                               fontSize: 18.fSize,
@@ -65,7 +54,7 @@ class StoreScreen extends StatelessWidget {
             imagePath: ImageConstant.imgProfile,
             margin: EdgeInsets.only(left: 24.h, top: 7.v, bottom: 7.v)),
         centerTitle: true,
-        title: AppbarTitle(text: "lbl28".tr),
+        title: AppbarTitle(text: "المتجر"),
         actions: [
           Container(
               height: 58.33.v,
@@ -94,7 +83,7 @@ class StoreScreen extends StatelessWidget {
                     child: Padding(
                         padding: EdgeInsets.only(
                             left: 36.h, right: 6.h, bottom: 37.v),
-                        child: Text("lbl_22".tr,
+                        child: Text("2",
                             style: TextStyle(
                                 color: theme.colorScheme.onPrimary,
                                 fontSize: 14.fSize,
@@ -108,26 +97,19 @@ class StoreScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildItemGrid(BuildContext context) {
     return Expanded(
-        child: BlocSelector<StoreBloc, StoreState, StoreModel?>(
-            selector: (state) => state.storeModelObj,
-            builder: (context, storeModelObj) {
-              return GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisExtent: 206.v,
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 15.h,
-                      crossAxisSpacing: 15.h),
-                  physics: BouncingScrollPhysics(),
-                  itemCount: storeModelObj?.itemgridItemList.length ?? 0,
-                  itemBuilder: (context, index) {
-                    ItemgridItemModel model =
-                        storeModelObj?.itemgridItemList[index] ??
-                            ItemgridItemModel();
-                    return ItemgridItemWidget(model, onTapItem3: () {
-                      onTapItem3(context);
-                    });
-                  });
+        child: GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisExtent: 206.v,
+                crossAxisCount: 2,
+                mainAxisSpacing: 15.h,
+                crossAxisSpacing: 15.h),
+            physics: BouncingScrollPhysics(),
+            itemCount: 8,
+            itemBuilder: (context, index) {
+              return ItemgridItemWidget(onTapItem3: () {
+                onTapItem3(context);
+              });
             }));
   }
 
@@ -149,10 +131,7 @@ class StoreScreen extends StatelessWidget {
   }
 
   ///Handling page based on route
-  Widget getCurrentPage(
-    BuildContext context,
-    String currentRoute,
-  ) {
+  Widget getCurrentPage(String currentRoute) {
     switch (currentRoute) {
       case AppRoutes.newsOnePage:
         return NewsOnePage();
@@ -163,8 +142,6 @@ class StoreScreen extends StatelessWidget {
 
   /// Navigates to the itemDetailsScreen when the action is triggered.
   onTapItem3(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.itemDetailsScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.itemDetailsScreen);
   }
 }

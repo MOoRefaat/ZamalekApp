@@ -1,9 +1,5 @@
 import '../news_one_page/widgets/newsarticlelist_item_widget.dart';
 import '../news_one_page/widgets/userprofile_item_widget.dart';
-import 'bloc/news_one_bloc.dart';
-import 'models/news_one_model.dart';
-import 'models/newsarticlelist_item_model.dart';
-import 'models/userprofile_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 import 'package:mohamed_s_application1/widgets/app_bar/appbar_leading_circleimage.dart';
@@ -13,14 +9,6 @@ import 'package:mohamed_s_application1/widgets/custom_icon_button.dart';
 
 class NewsOnePage extends StatelessWidget {
   const NewsOnePage({Key? key}) : super(key: key);
-
-  static Widget builder(BuildContext context) {
-    return BlocProvider<NewsOneBloc>(
-        create: (context) =>
-            NewsOneBloc(NewsOneState(newsOneModelObj: NewsOneModel()))
-              ..add(NewsOneInitialEvent()),
-        child: NewsOnePage());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +35,7 @@ class NewsOnePage extends StatelessWidget {
             imagePath: ImageConstant.imgProfile,
             margin: EdgeInsets.only(left: 24.h, top: 26.v, bottom: 26.v)),
         centerTitle: true,
-        title: AppbarTitle(text: "lbl19".tr),
+        title: AppbarTitle(text: "الأخبار"),
         actions: [
           Container(
               height: 58.260002.v,
@@ -76,7 +64,7 @@ class NewsOnePage extends StatelessWidget {
                     child: Padding(
                         padding: EdgeInsets.only(
                             left: 36.h, right: 6.h, bottom: 37.v),
-                        child: Text("lbl_42".tr,
+                        child: Text("4",
                             style: TextStyle(
                                 color: theme.colorScheme.onPrimary,
                                 fontSize: 14.fSize,
@@ -94,7 +82,7 @@ class NewsOnePage extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Padding(
               padding: EdgeInsets.only(right: 24.h),
-              child: Text("lbl27".tr,
+              child: Text("أحدث الاخبار",
                   style: TextStyle(
                       color: theme.colorScheme.primaryContainer,
                       fontSize: 18.fSize,
@@ -103,23 +91,16 @@ class NewsOnePage extends StatelessWidget {
       SizedBox(height: 17.v),
       SizedBox(
           height: 234.v,
-          child: BlocSelector<NewsOneBloc, NewsOneState, NewsOneModel?>(
-              selector: (state) => state.newsOneModelObj,
-              builder: (context, newsOneModelObj) {
-                return ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, index) {
-                      return SizedBox(width: 8.h);
-                    },
-                    itemCount: newsOneModelObj?.userprofileItemList.length ?? 0,
-                    itemBuilder: (context, index) {
-                      UserprofileItemModel model =
-                          newsOneModelObj?.userprofileItemList[index] ??
-                              UserprofileItemModel();
-                      return UserprofileItemWidget(model, onTapUserProfile: () {
-                        onTapUserProfile(context);
-                      });
-                    });
+          child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) {
+                return SizedBox(width: 8.h);
+              },
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return UserprofileItemWidget(onTapUserProfile: () {
+                  onTapUserProfile(context);
+                });
               }))
     ]);
   }
@@ -128,30 +109,20 @@ class NewsOnePage extends StatelessWidget {
   Widget _buildNewsArticleList(BuildContext context) {
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.h),
-        child: BlocSelector<NewsOneBloc, NewsOneState, NewsOneModel?>(
-            selector: (state) => state.newsOneModelObj,
-            builder: (context, newsOneModelObj) {
-              return ListView.separated(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: 8.v);
-                  },
-                  itemCount:
-                      newsOneModelObj?.newsarticlelistItemList.length ?? 0,
-                  itemBuilder: (context, index) {
-                    NewsarticlelistItemModel model =
-                        newsOneModelObj?.newsarticlelistItemList[index] ??
-                            NewsarticlelistItemModel();
-                    return NewsarticlelistItemWidget(model);
-                  });
+        child: ListView.separated(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            separatorBuilder: (context, index) {
+              return SizedBox(height: 8.v);
+            },
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return NewsarticlelistItemWidget();
             }));
   }
 
   /// Navigates to the newsScreen when the action is triggered.
   onTapUserProfile(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.newsScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.newsScreen);
   }
 }

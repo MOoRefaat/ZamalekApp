@@ -1,7 +1,4 @@
 import '../score_screen/widgets/four_item_widget.dart';
-import 'bloc/score_bloc.dart';
-import 'models/four_item_model.dart';
-import 'models/score_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:mohamed_s_application1/core/app_export.dart';
@@ -10,20 +7,12 @@ import 'package:mohamed_s_application1/widgets/custom_elevated_button.dart';
 import 'package:mohamed_s_application1/widgets/custom_outlined_button.dart';
 
 class ScoreScreen extends StatelessWidget {
-  const ScoreScreen({Key? key})
+  ScoreScreen({Key? key})
       : super(
           key: key,
         );
 
-  static Widget builder(BuildContext context) {
-    return BlocProvider<ScoreBloc>(
-      create: (context) => ScoreBloc(ScoreState(
-        scoreModelObj: ScoreModel(),
-      ))
-        ..add(ScoreInitialEvent()),
-      child: ScoreScreen(),
-    );
-  }
+  bool rectangle = false;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +82,7 @@ class ScoreScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 5.h),
                     child: Text(
-                      "lbl11".tr,
+                      "الزمالك",
                       style: TextStyle(
                         color: theme.colorScheme.primaryContainer,
                         fontSize: 12.fSize,
@@ -121,7 +110,7 @@ class ScoreScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 4.v),
                   Text(
-                    "lbl15".tr,
+                    "بيراميدز",
                     style: TextStyle(
                       color: theme.colorScheme.primaryContainer,
                       fontSize: 12.fSize,
@@ -149,7 +138,7 @@ class ScoreScreen extends StatelessWidget {
                       Opacity(
                         opacity: 0.1,
                         child: Text(
-                          "lbl_22".tr,
+                          "2",
                           style: TextStyle(
                             color: theme.colorScheme.primary.withOpacity(0.39),
                             fontSize: 32.fSize,
@@ -160,12 +149,12 @@ class ScoreScreen extends StatelessWidget {
                       ),
                       CustomOutlinedButton(
                         width: 48.h,
-                        text: "lbl_32".tr,
+                        text: "3",
                       ),
                       Opacity(
                         opacity: 0.1,
                         child: Text(
-                          "lbl_42".tr,
+                          "4",
                           style: TextStyle(
                             color: theme.colorScheme.primary.withOpacity(0.39),
                             fontSize: 32.fSize,
@@ -183,7 +172,7 @@ class ScoreScreen extends StatelessWidget {
                         Opacity(
                           opacity: 0.1,
                           child: Text(
-                            "lbl_1".tr,
+                            "1",
                             style: TextStyle(
                               color:
                                   theme.colorScheme.primary.withOpacity(0.39),
@@ -195,12 +184,12 @@ class ScoreScreen extends StatelessWidget {
                         ),
                         CustomOutlinedButton(
                           width: 48.h,
-                          text: "lbl_22".tr,
+                          text: "2",
                         ),
                         Opacity(
                           opacity: 0.1,
                           child: Text(
-                            "lbl_32".tr,
+                            "3",
                             style: TextStyle(
                               color:
                                   theme.colorScheme.primary.withOpacity(0.39),
@@ -236,27 +225,20 @@ class ScoreScreen extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: BlocSelector<ScoreBloc, ScoreState, bool?>(
-              selector: (state) => state.rectangle,
-              builder: (context, rectangle) {
-                return CustomCheckboxButton(
-                  alignment: Alignment.bottomRight,
-                  width: 200.h,
-                  text: "msg16".tr,
-                  value: rectangle,
-                  textStyle: TextStyle(
-                    color: appTheme.blueGray300,
-                    fontSize: 16.fSize,
-                    fontFamily: 'DIN Next LT Arabic',
-                    fontWeight: FontWeight.w400,
-                  ),
-                  isRightCheck: true,
-                  onChange: (value) {
-                    context
-                        .read<ScoreBloc>()
-                        .add(ChangeCheckBoxEvent(value: value));
-                  },
-                );
+            child: CustomCheckboxButton(
+              alignment: Alignment.bottomRight,
+              width: 200.h,
+              text: "انتهاء المباراة بضربات الترجيح",
+              value: rectangle,
+              textStyle: TextStyle(
+                color: appTheme.blueGray300,
+                fontSize: 16.fSize,
+                fontFamily: 'DIN Next LT Arabic',
+                fontWeight: FontWeight.w400,
+              ),
+              isRightCheck: true,
+              onChange: (value) {
+                rectangle = value;
               },
             ),
           ),
@@ -289,7 +271,7 @@ class ScoreScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: 85.h),
             child: Text(
-              "lbl40".tr,
+              "توقعات الرائجه",
               style: TextStyle(
                 color: theme.colorScheme.primaryContainer,
                 fontSize: 18.fSize,
@@ -299,29 +281,10 @@ class ScoreScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 15.v),
-          BlocSelector<ScoreBloc, ScoreState, ScoreModel?>(
-            selector: (state) => state.scoreModelObj,
-            builder: (context, scoreModelObj) {
-              return Wrap(
-                runSpacing: 24.v,
-                spacing: 24.h,
-                children: List<Widget>.generate(
-                  scoreModelObj?.fourItemList.length ?? 0,
-                  (index) {
-                    FourItemModel model =
-                        scoreModelObj?.fourItemList[index] ?? FourItemModel();
-
-                    return FourItemWidget(
-                      model,
-                      onSelectedChipView: (value) {
-                        context.read<ScoreBloc>().add(UpdateChipViewEvent(
-                            index: index, isSelected: value));
-                      },
-                    );
-                  },
-                ),
-              );
-            },
+          Wrap(
+            runSpacing: 24.v,
+            spacing: 24.h,
+            children: List<Widget>.generate(6, (index) => FourItemWidget()),
           ),
         ],
       ),
@@ -331,7 +294,7 @@ class ScoreScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildSavePredictionButtonSection(BuildContext context) {
     return CustomElevatedButton(
-      text: "lbl41".tr,
+      text: "حفظ التوقع",
       margin: EdgeInsets.only(
         left: 24.h,
         right: 24.h,

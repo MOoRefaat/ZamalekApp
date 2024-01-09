@@ -1,9 +1,5 @@
 import '../item_details_screen/widgets/framethirtysix_item_widget.dart';
 import '../item_details_screen/widgets/itemdetails_item_widget.dart';
-import 'bloc/item_details_bloc.dart';
-import 'models/framethirtysix_item_model.dart';
-import 'models/item_details_model.dart';
-import 'models/itemdetails_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 import 'package:mohamed_s_application1/widgets/app_bar/appbar_leading_iconbutton.dart';
@@ -16,16 +12,6 @@ class ItemDetailsScreen extends StatelessWidget {
       : super(
           key: key,
         );
-
-  static Widget builder(BuildContext context) {
-    return BlocProvider<ItemDetailsBloc>(
-      create: (context) => ItemDetailsBloc(ItemDetailsState(
-        itemDetailsModelObj: ItemDetailsModel(),
-      ))
-        ..add(ItemDetailsInitialEvent()),
-      child: ItemDetailsScreen(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,29 +75,19 @@ class ItemDetailsScreen extends StatelessWidget {
   Widget _buildItemDetails(BuildContext context) {
     return SizedBox(
       height: 58.v,
-      child: BlocSelector<ItemDetailsBloc, ItemDetailsState, ItemDetailsModel?>(
-        selector: (state) => state.itemDetailsModelObj,
-        builder: (context, itemDetailsModelObj) {
-          return ListView.separated(
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (
-              context,
-              index,
-            ) {
-              return SizedBox(
-                width: 8.h,
-              );
-            },
-            itemCount: itemDetailsModelObj?.itemdetailsItemList.length ?? 0,
-            itemBuilder: (context, index) {
-              ItemdetailsItemModel model =
-                  itemDetailsModelObj?.itemdetailsItemList[index] ??
-                      ItemdetailsItemModel();
-              return ItemdetailsItemWidget(
-                model,
-              );
-            },
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (
+          context,
+          index,
+        ) {
+          return SizedBox(
+            width: 8.h,
           );
+        },
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          return ItemdetailsItemWidget();
         },
       ),
     );
@@ -123,7 +99,7 @@ class ItemDetailsScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          "lbl29".tr,
+          "أختر المقاس",
           style: TextStyle(
             color: theme.colorScheme.primaryContainer,
             fontSize: 16.fSize,
@@ -132,30 +108,11 @@ class ItemDetailsScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 9.v),
-        BlocSelector<ItemDetailsBloc, ItemDetailsState, ItemDetailsModel?>(
-          selector: (state) => state.itemDetailsModelObj,
-          builder: (context, itemDetailsModelObj) {
-            return Wrap(
-              runSpacing: 8.v,
-              spacing: 8.h,
-              children: List<Widget>.generate(
-                itemDetailsModelObj?.framethirtysixItemList.length ?? 0,
-                (index) {
-                  FramethirtysixItemModel model =
-                      itemDetailsModelObj?.framethirtysixItemList[index] ??
-                          FramethirtysixItemModel();
-
-                  return FramethirtysixItemWidget(
-                    model,
-                    onSelectedChipView: (value) {
-                      context.read<ItemDetailsBloc>().add(
-                          UpdateChipViewEvent(index: index, isSelected: value));
-                    },
-                  );
-                },
-              ),
-            );
-          },
+        Wrap(
+          runSpacing: 8.v,
+          spacing: 8.h,
+          children:
+              List<Widget>.generate(6, (index) => FramethirtysixItemWidget()),
         ),
       ],
     );
@@ -186,7 +143,7 @@ class ItemDetailsScreen extends StatelessWidget {
                           bottom: 46.v,
                         ),
                         child: Text(
-                          "lbl17".tr.toUpperCase(),
+                          "ج.م".toUpperCase(),
                           style: TextStyle(
                             color: theme.colorScheme.primary,
                             fontSize: 16.fSize,
@@ -201,7 +158,7 @@ class ItemDetailsScreen extends StatelessWidget {
                           bottom: 41.v,
                         ),
                         child: Text(
-                          "lbl_640".tr,
+                          "640",
                           style: TextStyle(
                             color: theme.colorScheme.primaryContainer,
                             fontSize: 24.fSize,
@@ -215,7 +172,7 @@ class ItemDetailsScreen extends StatelessWidget {
                         width: 200.h,
                         margin: EdgeInsets.only(top: 2.v),
                         child: Text(
-                          "msg8".tr,
+                          "قميص مباراة الزمالك الأساسي",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.right,
@@ -247,7 +204,7 @@ class ItemDetailsScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(right: 4.h),
                       child: Text(
-                        "lbl30".tr,
+                        "وصف المنتج",
                         style: TextStyle(
                           color: theme.colorScheme.primaryContainer,
                           fontSize: 16.fSize,
@@ -261,7 +218,7 @@ class ItemDetailsScreen extends StatelessWidget {
                     width: 336.h,
                     margin: EdgeInsets.only(left: 8.h),
                     child: Text(
-                      "msg15".tr,
+                      "المزيج المثالي بين الأسلوب والأداء. مصنوع من أقمشة مضادة للبكتيريا بتقنية DRY+ مسامية، هذا الجيرسي مصمم ليبقيك منتعشًا ومرتاحًا حتى خلال المباريات الأكثر كثافة. يتميز بشعار الزمالك الرسمي ثلاثي الأبعاد وشارة ثلاثية الأبعاد مطاطية أصلية، يمكنك إظهار فخرك بفريقك بثقة. مصنوع من البوليستر بنسبة 100%، هذا الجيرسي النحيف يحتضن جسمك للحصول على مظهر أنيق. ومع التغليف الحصري للزمالك.",
                       maxLines: 7,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.right,
@@ -292,7 +249,7 @@ class ItemDetailsScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 32.v),
                   CustomElevatedButton(
-                    text: "lbl31".tr,
+                    text: "أضف للعربة",
                     buttonStyle: CustomButtonStyles.fillPrimary,
                   ),
                 ],

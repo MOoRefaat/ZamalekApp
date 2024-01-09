@@ -1,9 +1,5 @@
 import '../home_page/widgets/item3_item_widget.dart';
 import '../home_page/widgets/viewhierarchy_item_widget.dart';
-import 'bloc/home_bloc.dart';
-import 'models/home_model.dart';
-import 'models/item3_item_model.dart';
-import 'models/viewhierarchy_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mohamed_s_application1/core/app_export.dart';
 import 'package:mohamed_s_application1/widgets/app_bar/appbar_title_circleimage.dart';
@@ -14,13 +10,6 @@ import 'package:mohamed_s_application1/widgets/custom_elevated_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
-  static Widget builder(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-        create: (context) => HomeBloc(HomeState(homeModelObj: HomeModel()))
-          ..add(HomeInitialEvent()),
-        child: HomePage());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,21 +26,24 @@ class HomePage extends StatelessWidget {
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.h),
                           child: _buildNinetySix(context,
-                              titleText1: "lbl9".tr, titleText2: "lbl10".tr)),
+                              titleText1: "إظهار الكل",
+                              titleText2: "المباريات")),
                       SizedBox(height: 6.v),
                       _buildViewHierarchy(context),
                       SizedBox(height: 25.v),
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.h),
                           child: _buildNinetySix(context,
-                              titleText1: "lbl9".tr, titleText2: "lbl16".tr)),
+                              titleText1: "إظهار الكل",
+                              titleText2: "المضاف حديثا")),
                       SizedBox(height: 7.v),
                       _buildItem3(context),
                       SizedBox(height: 32.v),
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.h),
                           child: _buildNinetySix(context,
-                              titleText1: "lbl9".tr, titleText2: "lbl18".tr)),
+                              titleText1: "إظهار الكل",
+                              titleText2: "أحدث الأخبار")),
                       SizedBox(height: 16.v),
                       _buildTitle3(context)
                     ])))));
@@ -132,11 +124,11 @@ class HomePage extends StatelessWidget {
                             RichText(
                                 text: TextSpan(children: [
                                   TextSpan(
-                                      text: "lbl7".tr,
+                                      text: "الزمالك ",
                                       style: CustomTextStyles
                                           .headlineSmallOnPrimary_1),
                                   TextSpan(
-                                      text: "lbl_vs".tr,
+                                      text: "VS الأهلي",
                                       style:
                                           CustomTextStyles.titleSmallOnPrimary)
                                 ]),
@@ -147,7 +139,7 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   Padding(
                                       padding: EdgeInsets.only(top: 3.v),
-                                      child: Text("lbl_10_2023".tr,
+                                      child: Text("10 اكتوبر 2023",
                                           style: TextStyle(
                                               color:
                                                   theme.colorScheme.onPrimary,
@@ -167,7 +159,7 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   Padding(
                                       padding: EdgeInsets.only(top: 4.v),
-                                      child: Text("msg4".tr,
+                                      child: Text("ستاد القاهرة الدولي",
                                           style: TextStyle(
                                               color:
                                                   theme.colorScheme.onPrimary,
@@ -185,7 +177,7 @@ class HomePage extends StatelessWidget {
                             CustomElevatedButton(
                                 height: 32.v,
                                 width: 108.h,
-                                text: "lbl8".tr,
+                                text: "حجز تذكرة",
                                 leftIcon: Container(
                                     margin: EdgeInsets.only(right: 8.h),
                                     child: CustomImageView(
@@ -204,22 +196,14 @@ class HomePage extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: SizedBox(
             height: 144.v,
-            child: BlocSelector<HomeBloc, HomeState, HomeModel?>(
-                selector: (state) => state.homeModelObj,
-                builder: (context, homeModelObj) {
-                  return ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, index) {
-                        return SizedBox(width: 8.h);
-                      },
-                      itemCount:
-                          homeModelObj?.viewhierarchyItemList.length ?? 0,
-                      itemBuilder: (context, index) {
-                        ViewhierarchyItemModel model =
-                            homeModelObj?.viewhierarchyItemList[index] ??
-                                ViewhierarchyItemModel();
-                        return ViewhierarchyItemWidget(model);
-                      });
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (context, index) {
+                  return SizedBox(width: 8.h);
+                },
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return ViewhierarchyItemWidget();
                 })));
   }
 
@@ -229,23 +213,16 @@ class HomePage extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: SizedBox(
             height: 205.v,
-            child: BlocSelector<HomeBloc, HomeState, HomeModel?>(
-                selector: (state) => state.homeModelObj,
-                builder: (context, homeModelObj) {
-                  return ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, index) {
-                        return SizedBox(width: 8.h);
-                      },
-                      itemCount: homeModelObj?.item3ItemList.length ?? 0,
-                      itemBuilder: (context, index) {
-                        Item3ItemModel model =
-                            homeModelObj?.item3ItemList[index] ??
-                                Item3ItemModel();
-                        return Item3ItemWidget(model, onTapItem3: () {
-                          onTapItem3(context);
-                        });
-                      });
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (context, index) {
+                  return SizedBox(width: 8.h);
+                },
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Item3ItemWidget(onTapItem3: () {
+                    onTapItem3(context);
+                  });
                 })));
   }
 
@@ -257,14 +234,16 @@ class HomePage extends StatelessWidget {
             child: Row(children: [
           _buildTitle(context,
               image: ImageConstant.imgRectangle18511,
-              title1: "msg9".tr,
-              title2: "lbl_20_2023".tr),
+              title1:
+                  "موعد مباراة الزمالك أمام بيراميدز في الدوري والقناة الناقلة",
+              title2: "20 سبتمبر 2023"),
           Padding(
               padding: EdgeInsets.only(left: 7.h),
               child: _buildTitle(context,
                   image: ImageConstant.imgRectangle18511132x278,
-                  title1: "msg_72".tr,
-                  title2: "lbl_20_2023".tr))
+                  title1:
+                      "نكشف سبب غياب 7 لاعبين عن قائمة الزمالك أمام بيراميدز.. أبرزهم زيزو وفتوح!",
+                  title2: "20 سبتمبر 2023"))
         ])));
   }
 
@@ -339,13 +318,11 @@ class HomePage extends StatelessWidget {
 
   /// Navigates to the itemDetailsScreen when the action is triggered.
   onTapItem3(BuildContext context) {
-    NavigatorService.pushNamed(AppRoutes.itemDetailsScreen);
+    Navigator.pushNamed(context, AppRoutes.itemDetailsScreen);
   }
 
   /// Navigates to the profileScreen when the action is triggered.
   onTapProfile(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.profileScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.profileScreen);
   }
 }

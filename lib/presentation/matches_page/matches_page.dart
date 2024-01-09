@@ -1,7 +1,4 @@
 import '../matches_page/widgets/viewhierarchy1_item_widget.dart';
-import 'bloc/matches_bloc.dart';
-import 'models/matches_model.dart';
-import 'models/viewhierarchy1_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:mohamed_s_application1/core/app_export.dart';
@@ -13,14 +10,6 @@ import 'package:mohamed_s_application1/widgets/custom_icon_button.dart';
 
 class MatchesPage extends StatelessWidget {
   const MatchesPage({Key? key}) : super(key: key);
-
-  static Widget builder(BuildContext context) {
-    return BlocProvider<MatchesBloc>(
-        create: (context) =>
-            MatchesBloc(MatchesState(matchesModelObj: MatchesModel()))
-              ..add(MatchesInitialEvent()),
-        child: MatchesPage());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +40,7 @@ class MatchesPage extends StatelessWidget {
             imagePath: ImageConstant.imgProfile,
             margin: EdgeInsets.only(left: 24.h, top: 26.v, bottom: 25.v)),
         centerTitle: true,
-        title: AppbarTitle(text: "lbl10".tr),
+        title: AppbarTitle(text: "المباريات"),
         actions: [
           Container(
               height: 58.260002.v,
@@ -80,7 +69,7 @@ class MatchesPage extends StatelessWidget {
                     child: Padding(
                         padding: EdgeInsets.only(
                             left: 36.h, right: 6.h, bottom: 37.v),
-                        child: Text("lbl_42".tr,
+                        child: Text("4",
                             style: TextStyle(
                                 color: theme.colorScheme.onPrimary,
                                 fontSize: 14.fSize,
@@ -102,7 +91,7 @@ class MatchesPage extends StatelessWidget {
               height: 20.adaptSize,
               width: 20.adaptSize,
               margin: EdgeInsets.only(top: 1.v, bottom: 5.v)),
-          Text("lbl22".tr,
+          Text("مباريات قادمة",
               style: TextStyle(
                   color: theme.colorScheme.primaryContainer,
                   fontSize: 18.fSize,
@@ -113,24 +102,17 @@ class MatchesPage extends StatelessWidget {
 
   /// Section Widget
   Widget _buildViewHierarchy(BuildContext context) {
-    return BlocSelector<MatchesBloc, MatchesState, MatchesModel?>(
-        selector: (state) => state.matchesModelObj,
-        builder: (context, matchesModelObj) {
-          return ListView.separated(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              separatorBuilder: (context, index) {
-                return SizedBox(height: 16.v);
-              },
-              itemCount: matchesModelObj?.viewhierarchy1ItemList.length ?? 0,
-              itemBuilder: (context, index) {
-                Viewhierarchy1ItemModel model =
-                    matchesModelObj?.viewhierarchy1ItemList[index] ??
-                        Viewhierarchy1ItemModel();
-                return Viewhierarchy1ItemWidget(model, onTapViewHierarchy: () {
-                  onTapViewHierarchy(context);
-                });
-              });
+    return ListView.separated(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        separatorBuilder: (context, index) {
+          return SizedBox(height: 16.v);
+        },
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return Viewhierarchy1ItemWidget(onTapViewHierarchy: () {
+            onTapViewHierarchy(context);
+          });
         });
   }
 
@@ -139,7 +121,7 @@ class MatchesPage extends StatelessWidget {
     return CustomElevatedButton(
         height: 40.v,
         width: 77.h,
-        text: "lbl23".tr,
+        text: "توقع الأن",
         margin: EdgeInsets.only(right: 14.h),
         alignment: Alignment.centerRight);
   }
@@ -160,15 +142,15 @@ class MatchesPage extends StatelessWidget {
             decoration: AppDecoration.outlineBlueGray
                 .copyWith(borderRadius: BorderRadiusStyle.roundedBorder16),
             child: Stack(alignment: Alignment.topRight, children: [
-              _buildThirtyOne(context, title: "lbl11".tr),
+              _buildThirtyOne(context, title: "الزمالك"),
               Padding(
                   padding: EdgeInsets.only(top: 40.v, right: 33.h),
-                  child: _buildTitle(context, title: "lbl15".tr)),
+                  child: _buildTitle(context, title: "بيراميدز")),
               Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
                       padding: EdgeInsets.only(top: 12.v),
-                      child: Text("msg5".tr,
+                      child: Text("الدوري المصري الممتاز",
                           style: TextStyle(
                               color: theme.colorScheme.primaryContainer,
                               fontSize: 12.fSize,
@@ -178,7 +160,7 @@ class MatchesPage extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: Padding(
                       padding: EdgeInsets.only(top: 36.v),
-                      child: Text("lbl_102".tr,
+                      child: Text("الأسبوع 10",
                           style: TextStyle(
                               color: appTheme.blueGray300,
                               fontSize: 10.fSize,
@@ -188,7 +170,7 @@ class MatchesPage extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                       padding: EdgeInsets.only(bottom: 16.v),
-                      child: Text("lbl_09_00".tr,
+                      child: Text("09:00 م",
                           textAlign: TextAlign.right,
                           style: TextStyle(
                               color: appTheme.blueGray300,
@@ -199,7 +181,7 @@ class MatchesPage extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                       padding: EdgeInsets.only(bottom: 42.v),
-                      child: Text("lbl_21_2023".tr,
+                      child: Text("21 سبتمبر 2023",
                           textAlign: TextAlign.right,
                           style: TextStyle(
                               color: appTheme.blueGray300,
@@ -213,7 +195,7 @@ class MatchesPage extends StatelessWidget {
                       padding: EdgeInsets.all(16.h),
                       decoration: AppDecoration.fillPrimary.copyWith(
                           borderRadius: BorderRadiusStyle.circleBorder20),
-                      child: Text("lbl23".tr,
+                      child: Text("توقع الأن",
                           style: TextStyle(
                               color: theme.colorScheme.onPrimary,
                               fontSize: 12.fSize,
@@ -261,7 +243,7 @@ class MatchesPage extends StatelessWidget {
                                                         padding:
                                                             EdgeInsets.only(
                                                                 left: 5.h),
-                                                        child: Text("lbl11".tr,
+                                                        child: Text("الزمالك",
                                                             textAlign:
                                                                 TextAlign.right,
                                                             style: TextStyle(
@@ -282,7 +264,8 @@ class MatchesPage extends StatelessWidget {
                                           child: Padding(
                                               padding:
                                                   EdgeInsets.only(top: 12.v),
-                                              child: Text("msg5".tr,
+                                              child: Text(
+                                                  "الدوري المصري الممتاز",
                                                   style: TextStyle(
                                                       color: theme.colorScheme
                                                           .primaryContainer,
@@ -296,7 +279,7 @@ class MatchesPage extends StatelessWidget {
                                           child: Padding(
                                               padding: EdgeInsets.only(
                                                   top: 36.v, right: 30.h),
-                                              child: Text("lbl_102".tr,
+                                              child: Text("الأسبوع 10",
                                                   style: TextStyle(
                                                       color:
                                                           appTheme.blueGray300,
@@ -310,7 +293,7 @@ class MatchesPage extends StatelessWidget {
                                           child: Padding(
                                               padding: EdgeInsets.only(
                                                   right: 29.h, bottom: 16.v),
-                                              child: Text("lbl_09_00".tr,
+                                              child: Text("09:00 م",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                       color:
@@ -325,7 +308,7 @@ class MatchesPage extends StatelessWidget {
                                           child: Padding(
                                               padding: EdgeInsets.only(
                                                   right: 14.h, bottom: 42.v),
-                                              child: Text("lbl_21_2023".tr,
+                                              child: Text("21 سبتمبر 2023",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                       color:
@@ -346,7 +329,7 @@ class MatchesPage extends StatelessWidget {
                                       height: 60.adaptSize,
                                       width: 60.adaptSize),
                                   SizedBox(height: 8.v),
-                                  Text("lbl14".tr,
+                                  Text("الإسماعيلي",
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                           color: theme
@@ -414,8 +397,6 @@ class MatchesPage extends StatelessWidget {
 
   /// Navigates to the scoreScreen when the action is triggered.
   onTapViewHierarchy(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.scoreScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.scoreScreen);
   }
 }

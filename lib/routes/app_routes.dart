@@ -36,18 +36,15 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
-  static const String initialRoute = '/initialRoute';
-
-  static Map<String, WidgetBuilder> get routes => {
-        splashScreen: SplashScreen.builder,
-        loginScreen: LoginScreen.builder,
-        newsOneContainerScreen: NewsOneContainerScreen.builder,
-        storeScreen: StoreScreen.builder,
-        newsScreen: NewsScreen.builder,
-        itemDetailsScreen: ItemDetailsScreen.builder,
-        profileScreen: ProfileScreen.builder,
-        scoreScreen: ScoreScreen.builder,
-        appNavigationScreen: AppNavigationScreen.builder,
-        initialRoute: LoginScreen.builder
-      };
+  static Map<String, WidgetBuilder> routes = {
+    splashScreen: (context) => SplashScreen(),
+    loginScreen: (context) => LoginScreen(),
+    newsOneContainerScreen: (context) => NewsOneContainerScreen(),
+    storeScreen: (context) => StoreScreen(),
+    newsScreen: (context) => NewsScreen(),
+    itemDetailsScreen: (context) => ItemDetailsScreen(),
+    profileScreen: (context) => ProfileScreen(),
+    scoreScreen: (context) => ScoreScreen(),
+    appNavigationScreen: (context) => AppNavigationScreen()
+  };
 }
